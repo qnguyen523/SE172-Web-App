@@ -1,0 +1,31 @@
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:first) %>:</strong></dt>
+  <dd><%= @user.first %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last) %>:</strong></dt>
+  <dd><%= @user.last %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @user.email %></dd>
+</dl>
+
+<%= link_to t('.Edit_Your_Account', :default => t("helpers.links.Edit_Your_Account")),
+              edit_user_path(@user), :class => 'btn btn-default'  %>
+<%= link_to t('.Back_to_Home', :default => t("helpers.links.Back_to_Home")),
+              '/', :class => 'btn btn-default' %>
+<% id = @user.id %> 
+<% if @user!=current_user %>
+<%= link_to t('.Send_Message', :default => t("helpers.links.Send_Message")),
+              new_conversation_path(:id => id), :class => 'btn btn-danger' %>
+<% end %>
+<div>
+    <% if @user.posts.any? %>
+    <h1> Ads (<%= @user.posts.count %>)</h1>
+    <ol class="posts" >
+        <%= render @user.posts %>
+    </ol>
+    <% end %>
+</div>
