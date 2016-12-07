@@ -3,3 +3,15 @@
   <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
 <%= render :partial => 'form' %>
+
+<p><strong> A list of books on my ad:</strong></p>
+
+<div id="books_part">
+	<!--passing books  -->
+ <%= render 'books_index' %>
+</div>
+
+<!-- done with rendering form -->
+<%= link_to 'Show this ad', @post %> |
+<%= link_to 'Back to ads page', posts_path %>
+<!-- debug -->
